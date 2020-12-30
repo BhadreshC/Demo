@@ -1,0 +1,18 @@
+<table>
+	<thead>
+		<tr>
+			<th>title</th>
+			<th>user_name</th>
+			<th>description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @comments.each do |thing| %>			
+		<tr>			
+			<td><%= thing.title %></td>
+			<td><%= thing.user_name %></td>
+			<td><%= thing.description%></td>
+		</tr>		
+		<% end %>		
+	</tbody>
+</table>
