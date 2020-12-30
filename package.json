@@ -1,5 +1,5 @@
 {
-  "name": "naresg",
+  "name": "maulik",
   "private": false,
   "dependencies": {
     "@rails/actioncable": "^6.0.0",
@@ -9,13 +9,13 @@
     "jquery": "^3.5.1",
     "turbolinks": "^5.2.0"
   },
-  "version": "1.2.4",
+  "version": "2.0.0",
   "devDependencies": {
     "webpack-dev-server": "^3.11.0"
   },
   "main": "index.js",
-  "license": "a",
-  "description": "this is 2nd demo",
-  "author": "naresg",
+  "license": "b",
+  "description": "thihihs",
+  "author": "sadssdsa",
   "repository": "git@github.com:BhadreshC/Demo.git"
 }
