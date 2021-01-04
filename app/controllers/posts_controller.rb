@@ -6,14 +6,14 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all
 
-    flash.now[:alert] = "You must be logged in"
-    flash.now[:notice] = "We have created #{@posts.length} posts till now."
-      puts flash.class
-      flash.each do |msg|
-      puts "-----------------"
-      puts msg
-      puts "-----------------"
-    end
+    # flash.now[:alert] = "You must be logged in"
+       flash.now[:notice] = "We have created #{@posts.length} posts till now."
+      # puts flash.class
+      # flash.each do |msg|
+      # puts "-----------------"
+      # puts msg
+      # puts "-----------------"
+    # end
   end
 
   # GET /posts/1
