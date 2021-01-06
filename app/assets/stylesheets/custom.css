@@ -1,6 +1,28 @@
 #pp{
-	height: 45px;	
+  height: 45px; 
 }
 tr td{
-	color: blue;
+  color: blue;
+}
+td.delievery_reason_form form{  
+  display: inline-flex;
+} 
+td.delievery_reason_form .delivery_reason{
+  margin-top: 18px; margin-left: 14px;
+}
+.assign_boy form {
+  display: inline-flex;
+}
+.assign_boy div.actions{
+  margin-bottom: 0;
+  margin-left: 15px;
+}
+
+.assign_boy .submit_btn{
+  background: black;
+  color: white;
+  font-size: 15px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 400;
 }

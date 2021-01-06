@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_02_063247) do
+ActiveRecord::Schema.define(version: 2021_01_05_102622) do
 
   create_table "appointments", force: :cascade do |t|
     t.string "name"
@@ -60,10 +60,30 @@ ActiveRecord::Schema.define(version: 2021_01_02_063247) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "delivery_boys", force: :cascade do |t|
+    t.string "name"
+    t.string "number"
+    t.text "address"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "employees", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "name"
+    t.text "address"
+    t.integer "delivery_boy_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "delivery_status", default: "not assign"
+    t.string "customer_name"
+    t.string "delivery_reason"
+    t.index ["delivery_boy_id"], name: "index_orders_on_delivery_boy_id"
   end
 
   create_table "patients", force: :cascade do |t|
@@ -99,6 +119,27 @@ ActiveRecord::Schema.define(version: 2021_01_02_063247) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "students", force: :cascade do |t|
+    t.string "name"
+    t.integer "standard"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "teachers", force: :cascade do |t|
+    t.string "name"
+    t.string "classname"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "teachers_students", id: false, force: :cascade do |t|
+    t.integer "student_id", null: false
+    t.integer "teacher_id", null: false
+    t.index ["student_id", "teacher_id"], name: "index_teachers_students_on_student_id_and_teacher_id"
+    t.index ["teacher_id", "student_id"], name: "index_teachers_students_on_teacher_id_and_student_id"
   end
 
   add_foreign_key "author_details", "authors"

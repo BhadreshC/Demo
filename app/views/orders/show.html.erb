@@ -1,0 +1,56 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @order.name %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @order.address %>
+</p>
+<p>
+  <strong>customer name:</strong>
+  <%= @order.customer_name %>
+</p>
+
+<p>
+  <strong>Delivery Status: </strong>
+  <%= @order.delivery_status %>
+</p>
+
+<% if @order.delivery_status == "cancelled" %>
+  <p>
+    <strong>Delivery reason: </strong>
+    <%= @order.delivery_reason %>
+  </p>
+<% end %>
+
+<% if @order.delivery_status == "not assign" %>
+  <div class="assign_boy">
+    <p><strong>assing delivery boy:</strong></p>
+    <%= form_tag assign_order_order_path do %>
+      <%= select_tag 'delivery_boy_id', options_for_select(DeliveryBoy.all.collect{ |u| [u.name, u.id] }) %>
+      <div class="actions">
+        <%= submit_tag "ASSIGN", class:"submit_btn" %>
+      </div>
+      <% end %>
+  </div>
+<% end %>
+<%= link_to 'Edit', edit_order_path(@order) %> ||
+<%= link_to 'Back', orders_path %> 
+<% if @order.delivery_status == "assign"%>
+  <%= form_with(model: @order, local: true) do |form| %>
+  <div class="field">
+    <%= form.label :delivery_reason %>
+    <%= form.text_field :delivery_reason, required: true%>
+  </div>
+  <div class="field">
+    <%= form.hidden_field :delivery_status, value: "cancelled"%>
+  </div>
+  <div class="actions">
+    <%= form.submit "cancel order", class:"delivery_reason"%>
+  </div>
+  <% end %>
+ || <%#= link_to 'cancel', cancel_order_order_path(@order)%>
+<% end %>

@@ -5,9 +5,10 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @posts = Post.all
-
+    # @author = Author.find(20)
     # flash.now[:alert] = "You must be logged in"
-       flash.now[:notice] = "We have created #{@posts.length} posts till now."
+    # @orders= Order.all
+       # flash.now[:notice] = "We have recived #{@orders.count} orders till now."
       # puts flash.class
       # flash.each do |msg|
       # puts "-----------------"

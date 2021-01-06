@@ -25,7 +25,14 @@
     <% end %>
   </tbody>
 </table>
+<p> <%#= @author.as_json %></p>
 
+<%# Author.includes(:books).all.each do |author| %>
+  <h2><%#= author.name %></h2>
+  <%# author.books.each do |book| %>
+    <p> <%#= book.title %></p>
+  <%# end %>
+<%# end %>
 <br>
 
 <%= link_to 'New Post', new_post_path %>
