@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Size:</strong>
+  <%= @varient.size %>
+</p>
+
+<p>
+  <strong>Color:</strong>
+  <%= @varient.color %>
+</p>
+
+<p>
+  <strong>Material:</strong>
+  <%= @varient.material %>
+</p>
+
+<%= link_to 'Edit', edit_varient_path(@varient) %> |
+<%= link_to 'Back', varients_path %>

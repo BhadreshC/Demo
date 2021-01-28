@@ -1,0 +1,15 @@
+<div class='nested-fields'>
+  <div class="field">
+    <%= f.label :task_list %>
+    <%= f.text_field :task_list %>
+  </div>
+  <div class="field">
+    <%= f.label :completion %>
+    <%= f.date_field :completion %>
+  </div>
+  <div class="field">
+    <%= f.check_box :done %>
+    <%= f.label :done %>
+  </div>
+  <%= link_to_remove_association "remove task", f %>
+</div>

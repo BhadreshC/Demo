@@ -6,11 +6,11 @@ class Author < ApplicationRecord
   #after_add: :after_method, before_add: :befor_method, before_remove: :before_remove_method, after_remove: :after_remove_method
   
   has_one :author_detail, touch: true , dependent: :destroy#, after_add: :check_author_detail_for_hasone #not working
-  
   # before_create :check_book_limit_for_create
-  # has_many :books, inverse_of: 'writer' # working
+  # has_many :books, inverse_of:\ 'writer' # working
   # has_many :, inverse_of: 'writer' # working
-  
+  accepts_nested_attributes_for :books
+  accepts_nested_attributes_for :author_detail
   def befor_method(b)
     puts "----------------------------------"
     puts "this is before_add from model check_book_limit"

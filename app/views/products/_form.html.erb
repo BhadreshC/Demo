@@ -1,0 +1,65 @@
+    <%#= form_with model: product do |product| %>
+    <%#= product.text_field :name %>
+    <%#= fields_for :varient, product.varients do |contact_detail_form| %>
+    <%#= contact_detail_form.text_field :phone_number %>
+    <%# end %>
+    <%# end %>
+
+    <%= form_with model: product, url: products_path ,local: true do |f| %>
+    <% if product.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+        <ul>
+          <% product.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+    <% end %>
+      </div>
+    <%= f.text_field :creator%>
+    <%= f.label :creator %>
+    <%= f.label :status%>
+    <%#= f.select :status, ["hello", "bjbhjbjhb"], include_blank: "select status" %>
+    <!-- <%#= f.time_zone_select :time_zone %> -->
+    <%#= f.select :time_zone, Post.statuses, include_blank: "select status"  %>
+    <%= f.date_select :birth_date %>
+    <%#= f.select :time_zone, options_for_select(Post.statuses)%>
+    <%#= select_tag "hello"  %>
+    <%= f.select :name, options_for_select(Book.order(:price).pluck(:title, :id), :id), multiple: true %>
+    <%= f.collection_select :name, Book.order(:price), :id, :title, multiple: true  %>
+    <%= f.label :language %>
+    <%#= f.check_box :english %>
+    <%#= f.check_box :hindi %>
+    <%# Post.all.each do |c| %>
+        <%#= check_box_tag "post_ids[#{c.id}]", c.id, :name => "car_ids[]" %>
+    <%# end %>
+    <%#= f.collection_check_boxes :creator, Post.order(:title), :id, :title %>  
+    <%#= f.collection_check_boxes :creator, @post_status, @post_status.each {|v| puts v.first} %>
+    <%= f.file_field :picture, multiple: true, accept: 'image/jpeg, image/png '%>
+    <%#= f.collection_radio_buttons :id, Post.order(:title), :id, :title %>
+    <%#= f.collection_check_boxes :creator, Product.order(:creator), :id, :creator %>
+    <%#= f.select :creator, [["helo", "hi"],["helo", "ho"],["helo", "kk"]] %>
+    <%#= f.collection_check_boxes :creator, Product.order(:creator), :id, :creator %>
+    <%#= f.collection_radio_buttons :id, Product.order(:creator), :id, :creator %>
+    
+
+    <!-- #not --> 
+    <%#= form_with model: Post do |form| %>
+        <%#= text_field_with_label form, :title %>
+    <%# end %>
+    
+
+    <!-- How it works? -->
+    <%#= form_with model: @person do |person_form| %>
+        <%#= person_form.text_field :name %>
+        <%# @person.addresses.each do |address| %>
+            <%#= person_form.fields_for address, index: address.id do |address_form| %>
+                <%#= address_form.text_field :city %>
+            <%# end %>
+        <%# end %>
+    <%# end %>
+
+
+    <%= f.submit "add product"%>
+    <% end %>
+

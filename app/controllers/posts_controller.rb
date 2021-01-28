@@ -1,12 +1,13 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-
+  skip_before_action :authenticate_admin!, only: :index
+  # include ProcContainer
   # GET /posts
   # GET /posts.json
   def index
     @posts = Post.all
     # @author = Author.find(20)
-    # flash.now[:alert] = "You must be logged in"
+    flash.now[:alert] = "You must be logged in"
     # @orders= Order.all
        # flash.now[:notice] = "We have recived #{@orders.count} orders till now."
       # puts flash.class
@@ -15,6 +16,13 @@ class PostsController < ApplicationController
       # puts msg
       # puts "-----------------"
     # end
+    # puts "-=================-=-=-=-=-=-"
+    # puts "-================="
+    # gen_proc = ProcContainer.proc_1(6)
+    # result = gen_proc(3)
+    # puts result
+    # puts "-================="
+    # puts "-=================-=-=-=-==-"
   end
 
   # GET /posts/1
@@ -79,6 +87,6 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:name, :title, :content)
+      params.require(:post).permit(:name, :title, :content, :title_confirmation, :status)
     end
 end

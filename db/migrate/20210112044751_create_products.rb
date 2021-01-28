@@ -1,7 +1,9 @@
 class CreateProducts < ActiveRecord::Migration[6.0]
   def change
     create_table :products do |t|
-      t.string :name
+      t.string :descrpition
+      t.string :creator
+      # t.integer :varients_count
       t.timestamps
     end
   end

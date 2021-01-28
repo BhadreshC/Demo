@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Author Details</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Age</th>
+      <th>City</th>
+      <th>Mobileno</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @author_details.each do |author_detail| %>
+      <tr>
+        <td><%= author_detail.age %></td>
+        <td><%= author_detail.city %></td>
+        <td><%= author_detail.mobileno %></td>
+        <td><%= link_to 'Show', author_detail %></td>
+        <td><%= link_to 'Edit', edit_author_detail_path(author_detail) %></td>
+        <td><%= link_to 'Destroy', author_detail, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Author Detail', new_author_detail_path %>

@@ -1,0 +1,18 @@
+<h1></h1>
+<%= form_with(model: Post, method: "post")do |f| %>
+	<%=f.label :creator %>
+	<%=f.text_field :creator %>
+	<%=f.label :descrpition %>
+	<%=f.text_field :descrpition %>
+	<%= f.select :city, ["Ahmedabad", "surat", "rajkot"]%>
+	<%= f.select :city_in_gj, [["Ahmedabad", "ABD"], ["surat", "SRT"], ["rajkot", "RJKT"]], selected: "SRT" %>
+	<%= f.select :state_vise,
+      {
+        "Europe" => [ ["Berlin", "BE"], ["Madrid", "MD"] ],
+        "North America" => [ ["Chicago", "CHI"] ],
+      },
+      selected: "CHI" %>
+  	<%=f.time_zone_select :time_zone %>
+	<%=f.submit 'hello', name:'submit' %>
+ 	<%= f.date_select :birth_date %>
+<% end %>

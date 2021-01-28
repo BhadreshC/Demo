@@ -1,13 +1,45 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update, :destroy, :cancel_order, :deliverd,:assign ]
-  
+  before_action :set_order, only: [:show, :edit, :update, :destroy, :cancel_order, :deliverd, :assign ]
+  prepend_after_action :send_invoice, only: :deliverd
+  prepend_before_action :set_cookie, only: :show
+  # prepend_before_action :check_auth, only: :destroy
+  # after_action :send_mail, only: :cancel_order
   # GET /orders
   # GET /orders.json
+
+
+  def set_cookie
+    puts "hello"
+    # puts @order.as_json
+    puts "-==-=-=-"
+    puts "-==-=-=-"
+    puts "-==-=-=-"
+    puts cookies[:name] = current_admin.name
+    puts "-==-=-=-"
+    puts "-==-=-=-"
+    puts "-==-=-=-"
+    puts "hello"
+  end
+  def check_auth
+    puts "--=-=---=-=-=-=-=-"
+    puts "--=-=---=-=-=-=-=-"
+    puts "--=-=---=-=-=-=-=-"
+    puts "--=-=---=-=-=-=-=-"
+  end
   def index
     @orders = Order.all
     @ordercounts =Order.group(:delivery_status).count
   end
 
+  def send_invoice
+    puts "-==-=-=-"
+    puts "-==-=-=-"
+    puts "send method call"
+    puts "send mail"
+    puts "-==-=-=-"
+    puts "-==-=-=-"
+    puts "-==-=-=-"
+  end
   # GET /orders/1
   # GET /orders/1.json
   def show
@@ -96,7 +128,9 @@ class OrdersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order
+      puts "-------------------set method call-------------------"
       @order = Order.find(params[:id])
+      puts "-------------------set method call-------------------"
     end
 
     # Only allow a list of trusted parameters through.

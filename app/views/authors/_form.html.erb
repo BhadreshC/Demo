@@ -1,0 +1,64 @@
+<%= form_with(model: author, local: true) do |form| %>
+  <% if author.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(author.errors.count, "error") %> prohibited this author from being saved:</h2>
+
+      <ul>
+        <% author.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">   
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address %>
+  </div>
+  
+  <% puts "before nested form" %>
+  <%= form.fields_for :author_detail do |author_detail| %>
+  <% puts "after nested form" %>
+    <h2>ADD DETAIL</h2>
+    <h2>Add Author Detail</h2>
+    <div class="field">
+      <%= author_detail.label :age %>
+      <%= author_detail.number_field :age %>
+    </div>
+
+    <div class="field">
+      <%= author_detail.label :city %>
+      <%= author_detail.text_field :city %>
+    </div>
+
+    <div class="field">
+      <%= author_detail.label :mobileno %>
+      <%= author_detail.text_field :mobileno %>
+    </div>
+  <% end %>
+
+  <%= form.fields_for :books do |b| %>
+    <h2>ADD BOOK</h2>
+    <h2>Add Book Detail</h2>
+    <div class="field">
+      <%= b.label :title %>
+      <%= b.text_field :title %>
+    </div>
+    <div class="field">
+      <%= b.label :ISBN %>
+      <%= b.text_field :ISBN %>
+    </div>
+    <div class="field">
+      <%= b.label :price %>
+      <%= b.number_field :price %>
+    </div>
+  <% end %>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

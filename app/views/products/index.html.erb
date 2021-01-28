@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+<h1>Products</h1>
+
+<%= form_tag batch_operation_products_path, method: :get do %>
+  <table>
+    <thead>
+      <tr>
+        <!-- <th>Title</th>
+        <th>Creator</th> -->
+        <th></th>
+        <th></th>
+        <th>creator</th>
+        <th>description</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @products.each do |product| %>    
+        <tr>
+          <% if product.descrpition != nil  %>
+            <td><%= check_box_tag "product_ids[]", product.id ,false %></td>
+            <td><%= link_to "remove description", remove_description_product_path(product)%></td>
+          <% else %>
+            <td></td>
+          <% end %>
+          <td><%= product.creator %></td>
+          <% if product.descrpition == nil%>
+            <td class="delievery_reason_form" style="display: flex;">
+            <%= form_with(model: product, local: true) do |form| %>
+              <div class="field">
+                <%= form.label :descrpition %>
+                <%= form.text_field :descrpition %>
+              </div>
+              <div class="actions">
+                <%= form.submit 'add description', class:"delivery_reason"%>
+              </div>
+              <% end %>
+            </td>
+            <% else %>
+              <td> <%= product.descrpition %></td>
+          <% end %>
+          <td><%= link_to 'Show', product %></td>
+          <td><%= link_to 'Edit', edit_product_path(product) %></td>
+          <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?'} %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= submit_tag 'create new record', name: nil %>
+<% end %>
+<br>
+
+<%= link_to 'New Product', new_product_path %> ||
+<%= link_to 'view Varients', varients_path %>

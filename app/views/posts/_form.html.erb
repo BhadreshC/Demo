@@ -2,7 +2,6 @@
   <% if post.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
       <ul>
         <% post.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -15,10 +14,19 @@
     <%= form.label :name %>
     <%= form.text_field :name %>
   </div>
-
+  <div class="field">    
+    <%#= form.label :name %>
+    <%#= form.text_field :name_confirmation %>
+  </div>
+  
   <div class="field">
     <%= form.label :title %>
     <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :title_confirmation %>
+    <%= form.text_field :title_confirmation %>
   </div>
 
   <div class="field">
@@ -26,6 +34,13 @@
     <%= form.text_area :content %>
   </div>
 
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.select :status, Post.statuses.keys%>
+  </div>
+  
+  <%#= form.collection_radio_buttons :status, Post.order(:title), :id, :title %>
+  <%#= form.collection_check_boxes :city_id, City.order(:name), :id, :name %>
   <div class="actions">
     <%= form.submit %>
   </div>
