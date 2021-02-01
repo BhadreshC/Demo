@@ -7,7 +7,6 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
 
-
   def set_cookie
     puts "hello"
     # puts @order.as_json
@@ -29,6 +28,10 @@ class OrdersController < ApplicationController
   def index
     @orders = Order.all
     @ordercounts =Order.group(:delivery_status).count
+    respond_to do |format|
+      format.html
+      format.csv{ send_data @orders.custom_csv}
+    end
   end
 
   def send_invoice
@@ -128,9 +131,7 @@ class OrdersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order
-      puts "-------------------set method call-------------------"
       @order = Order.find(params[:id])
-      puts "-------------------set method call-------------------"
     end
 
     # Only allow a list of trusted parameters through.

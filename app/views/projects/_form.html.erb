@@ -19,6 +19,16 @@
     <br/>
     <%= f.text_field :description %>
   </div>
+  <div class="field">
+    <%= f.label :logo %>
+    <br/>
+    <%= f.file_field :logo %>
+  </div>
+  <div class="field">
+    <%= f.label :image %>
+    <br/>
+    <%= f.file_field :images, multiple:true %>
+  </div>
   <h3>Tasks</h3>
   <div id='tasks'>
     <%= f.fields_for :tasks do |task| %>

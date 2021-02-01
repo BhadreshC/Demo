@@ -1,14 +1,36 @@
 <p id="notice"><%= notice %></p>
-
+<% puts params %>
 <p>
   <strong>Name:</strong>
   <%= @project.name %>
 </p>
-
 <p>
   <strong>Description:</strong>
   <%= @project.description %>
 </p>
+<p>
+<p> dowload image </p>
+  <strong>logo:</strong>
+  <%= image_tag url_for(@project.logo) %>
+  <%= link_to "Download", rails_blob_path(@project.logo, disposition: 'attachment') %> 
+</p>
+  <% puts "--=-=-=-=-=-=-=-=-=-==--=-=-=-=" %>
+  <% @project.images.map do |img| %>
+    <%  puts "------------each image contain:------------  #{img.as_json}" %>
+    <%  puts "before ________Image" %>
+      <%= image_tag url_for(img) %>
+    <%  puts "after ________Image" %>
+    <%= link_to "Download", rails_blob_path(img, disposition: 'attachment') %> 
+  <% end %>
+
+<%# @project.images.each do |image| %>
+  <%#= image_tag image %> <br />
+<%# end %>
+<p>
+  <strong>Images:</strong>
+  <%#= image_tag url_for(@project.images.first) %>
+</p>
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>
+<%= link_to "show json", project_path(format: "json") %>

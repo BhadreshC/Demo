@@ -12,6 +12,7 @@
   </thead>
 
   <tbody>
+
     <% @projects.each do |project| %>
       <tr>
         <td><%= project.name %></td>
@@ -23,7 +24,7 @@
     <% end %>
   </tbody>
 </table>
-
+<%= link_to "Download as CSV", projects_path(format: "csv") %>
 <br>
 
 <%= link_to 'New Project', new_project_path %>

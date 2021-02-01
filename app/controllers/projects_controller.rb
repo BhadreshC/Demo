@@ -1,15 +1,21 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
-
+  # require 'csv'
   # GET /projects
   # GET /projects.json
   def index
     @projects = Project.all
+    respond_to do |format|
+      format.html
+      format.csv { send_data @projects.custom_csv, filename: "hello#{DateTime.now}.csv" } #here custom csv is model method
+      format.json { render json: {data: "hello"}}
+    end
   end
 
   # GET /projects/1
   # GET /projects/1.json
   def show
+
   end
 
   # GET /projects/new
@@ -24,8 +30,13 @@ class ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.json
   def create
+    # byebug
     @project = Project.new(project_params)
-
+    puts "==============="
+    puts "==============="
+    puts "==============="
+    pp @project.as_json
+    # @project.images.attach(params[:][:images])
     respond_to do |format|
       if @project.save
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
@@ -64,14 +75,15 @@ class ProjectsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project
-      @project = Project.find(params[:id])
+      # @project = Project.includes(images_attachment: :blob).find_by(slug: params[:slug])
+      # @project = Project.with_attached_images.find_by(slug: params[:slug])
+      @project = Project.find_by(slug: params[:slug])
     end
-
     # Only allow a list of trusted parameters through.
     # def project_params
     #   params.require(:project).permit(:name, :description)
     # end
     def project_params
-      params.require(:project).permit(:name, :description, tasks_attributes: [:id, :task_list, :completion, :done, :_destroy])
+      params.require(:project).permit(:name, :description, :logo , images: [],  tasks_attributes: [:id, :task_list, :completion, :done, :_destroy])
     end
 end

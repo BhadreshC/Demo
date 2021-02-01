@@ -1,7 +1,7 @@
 class Author < ApplicationRecord
   # has_many :books, dependent: :destroy, before_add: [:check_book_limit, :second_method]
   
-  has_many :books, -> { order 'price desc' }, dependent: :destroy
+  has_many :books, -> { order 'price desc' }, dependent: :destroy, inverse_of: :author
   validates_presence_of :name
   #after_add: :after_method, before_add: :befor_method, before_remove: :before_remove_method, after_remove: :after_remove_method
   

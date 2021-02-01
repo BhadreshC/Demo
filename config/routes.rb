@@ -1,5 +1,6 @@
+
 Rails.application.routes.draw do
-  resources :projects
+  resources :projects, param: :slug
   devise_for :admins, controllers: { sessions: 'admins/sessions', registrations: 'admins/registrations' } 
   resources :delivery_boys do 
     member do

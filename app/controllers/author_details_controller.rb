@@ -3,6 +3,10 @@ class AuthorDetailsController < ApplicationController
 
   def index
     @author_details = AuthorDetail.all
+    respond_to do |format|
+      format.html
+      format.csv { send_data @author_details.pluck(:age) }
+    end
   end
 
   def show
