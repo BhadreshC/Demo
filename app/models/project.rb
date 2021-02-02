@@ -10,7 +10,6 @@ class Project < ApplicationRecord
   # end
   def self.custom_csv
     puts "-=--=--=-=--=--=-=-="
-    puts "-=--=--=-=--=--=-=-="
     puts "-=--=- CUSTOM CSV CALLL-=--=-=-="
     puts "-=--=--=-=--=--=-=-="
     CSV.generate do |csv|

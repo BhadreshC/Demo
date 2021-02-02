@@ -33,8 +33,6 @@ class ProjectsController < ApplicationController
     # byebug
     @project = Project.new(project_params)
     puts "==============="
-    puts "==============="
-    puts "==============="
     pp @project.as_json
     # @project.images.attach(params[:][:images])
     respond_to do |format|
