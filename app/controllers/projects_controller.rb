@@ -84,6 +84,8 @@ class ProjectsController < ApplicationController
     #   params.require(:project).permit(:name, :description)
     # end
     def project_params
+      puts "-=-=--=-=-=-=-=-=-=-=-=-==-=-="
       params.require(:project).permit(:name, :description, :logo , images: [],  tasks_attributes: [:id, :task_list, :completion, :done, :_destroy])
+      puts "-=-=--=-=-=-=-=-=-=-=-=-==-=-="
     end
 end
