@@ -12,17 +12,17 @@
 
 ActiveRecord::Schema.define(version: 2021_01_28_061956) do
 
-  create_table "active_storage_attachments", force: :cascade do |t|
+  create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.integer "record_id", null: false
-    t.integer "blob_id", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table "active_storage_blobs", force: :cascade do |t|
+  create_table "active_storage_blobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "key", null: false
     t.string "filename", null: false
     t.string "content_type"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_061956) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "admins", force: :cascade do |t|
+  create_table "admins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -56,10 +56,10 @@ ActiveRecord::Schema.define(version: 2021_01_28_061956) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "appointments", force: :cascade do |t|
+  create_table "appointments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
-    t.integer "patient_id"
-    t.integer "physician_id"
+    t.bigint "patient_id"
+    t.bigint "physician_id"
     t.datetime "appointment_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -67,17 +67,17 @@ ActiveRecord::Schema.define(version: 2021_01_28_061956) do
     t.index ["physician_id"], name: "index_appointments_on_physician_id"
   end
 
-  create_table "author_details", force: :cascade do |t|
+  create_table "author_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "age"
     t.string "city"
     t.string "mobileno"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "author_id", null: false
+    t.bigint "author_id", null: false
     t.index ["author_id"], name: "index_author_details_on_author_id"
   end
 
-  create_table "authors", force: :cascade do |t|
+  create_table "authors", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "address"
     t.datetime "created_at", precision: 6, null: false
@@ -85,17 +85,17 @@ ActiveRecord::Schema.define(version: 2021_01_28_061956) do
     t.integer "books_count"
   end
 
-  create_table "books", force: :cascade do |t|
+  create_table "books", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
     t.integer "price"
     t.integer "ISBN"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "author_id", null: false
+    t.bigint "author_id", null: false
     t.index ["author_id"], name: "index_books_on_author_id"
   end
 
-  create_table "comments", force: :cascade do |t|
+  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
     t.string "user_name"
     t.text "description"
@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_061956) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "delivery_boys", force: :cascade do |t|
+  create_table "delivery_boys", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "number"
     t.text "address"
@@ -112,16 +112,16 @@ ActiveRecord::Schema.define(version: 2021_01_28_061956) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "employees", force: :cascade do |t|
+  create_table "employees", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "orders", force: :cascade do |t|
+  create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.text "address"
-    t.integer "delivery_boy_id"
+    t.bigint "delivery_boy_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "delivery_status", default: "not assign"
@@ -130,44 +130,48 @@ ActiveRecord::Schema.define(version: 2021_01_28_061956) do
     t.index ["delivery_boy_id"], name: "index_orders_on_delivery_boy_id"
   end
 
-  create_table "patients", force: :cascade do |t|
+  create_table "patients", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "physicians", force: :cascade do |t|
+  create_table "physicians", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "pictures", force: :cascade do |t|
+  create_table "pictures", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "imageable_type"
-    t.integer "imageable_id"
+    t.bigint "imageable_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["imageable_type", "imageable_id"], name: "index_pictures_on_imageable_type_and_imageable_id"
   end
 
-  create_table "posts_detail", force: :cascade do |t|
+  create_table "posts_detail", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "title"
     t.text "content"
     t.boolean "customer", default: false
     t.datetime "date"
+    t.boolean "subscribers", default: false
+    t.boolean "trial", default: true
+    t.integer "price", default: 50
     t.integer "status"
+    t.index ["name"], name: "index_posts_detail_on_name"
   end
 
-  create_table "products", force: :cascade do |t|
+  create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "descrpition"
     t.string "creator"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "projects", force: :cascade do |t|
+  create_table "projects", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "description"
     t.string "slug"
@@ -175,42 +179,42 @@ ActiveRecord::Schema.define(version: 2021_01_28_061956) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "students", force: :cascade do |t|
+  create_table "students", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.integer "standard"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "tasks", force: :cascade do |t|
+  create_table "tasks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "task_list"
     t.date "completion"
     t.boolean "done"
-    t.integer "project_id", null: false
+    t.bigint "project_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["project_id"], name: "index_tasks_on_project_id"
   end
 
-  create_table "teachers", force: :cascade do |t|
+  create_table "teachers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "classname"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "teachers_students", id: false, force: :cascade do |t|
-    t.integer "student_id", null: false
-    t.integer "teacher_id", null: false
+  create_table "teachers_students", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "student_id", null: false
+    t.bigint "teacher_id", null: false
     t.index ["student_id", "teacher_id"], name: "index_teachers_students_on_student_id_and_teacher_id"
     t.index ["teacher_id", "student_id"], name: "index_teachers_students_on_teacher_id_and_student_id"
   end
 
-  create_table "varients", force: :cascade do |t|
+  create_table "varients", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "size"
     t.string "color"
     t.string "material"
-    t.integer "product_id"
+    t.bigint "product_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["product_id"], name: "index_varients_on_product_id"
