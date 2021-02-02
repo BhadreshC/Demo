@@ -4,25 +4,18 @@ class OrdersController < ApplicationController
   prepend_before_action :set_cookie, only: :show
   # prepend_before_action :check_auth, only: :destroy
   # after_action :send_mail, only: :cancel_order
-  # GET /orders
-  # GET /orders.json
-
   def set_cookie
     puts "hello"
     # puts @order.as_json
     puts "-==-=-=-"
     puts "-==-=-=-"
-    puts "-==-=-=-"
     puts cookies[:name] = current_admin.name
     puts "-==-=-=-"
     puts "-==-=-=-"
-    puts "-==-=-=-"
-    puts "hello"
   end
   def check_auth
     puts "--=-=---=-=-=-=-=-"
-    puts "--=-=---=-=-=-=-=-"
-    puts "--=-=---=-=-=-=-=-"
+    puts "--=-=--check_auth method call-=-=-=-=-=-"
     puts "--=-=---=-=-=-=-=-"
   end
   def index
@@ -43,22 +36,16 @@ class OrdersController < ApplicationController
     puts "-==-=-=-"
     puts "-==-=-=-"
   end
-  # GET /orders/1
-  # GET /orders/1.json
   def show
   end
 
-  # GET /orders/new
   def new
     @order = Order.new
   end
 
-  # GET /orders/1/edit
   def edit
   end
 
-  # POST /orders
-  # POST /orders.json
   def create
     @order = Order.new(order_params)
     respond_to do |format|
@@ -98,8 +85,6 @@ class OrdersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /orders/1
-  # PATCH/PUT /orders/1.json
   def update
     respond_to do |format|
       if @order.update(order_params)
@@ -117,9 +102,7 @@ class OrdersController < ApplicationController
       end
     end
   end
-
-  # DELETE /orders/1
-  # DELETE /orders/1.json
+  
   def destroy
     @order.destroy
     respond_to do |format|
